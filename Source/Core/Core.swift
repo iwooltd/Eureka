@@ -409,7 +409,7 @@ public struct InlineRowHideOptions : OptionSet {
 /// View controller that shows a form.
 open class FormViewController : UIViewController, FormViewControllerProtocol {
     
-    @IBOutlet public var tableView: UITableView?
+    @IBOutlet open var tableView: UITableView?
     
     private lazy var _form : Form = { [weak self] in
         let form = Form()
