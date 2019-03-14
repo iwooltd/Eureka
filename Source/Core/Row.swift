@@ -149,13 +149,15 @@ open class Row<Cell: CellType>: RowOf<Cell.Value>, TypedRowType where Cell: Base
         }
     }
 
+    private var _result: Cell?
     /// The cell associated to this row.
     public var cell: Cell! {
-        return _cell ?? {
-            let result = cellProvider.makeCell(style: self.cellStyle)
-            result.row = self
-            result.setup()
-            _cell = result
+        return _cell ?? _result ?? {
+            _result = cellProvider.makeCell(style: self.cellStyle)
+            _result!.row = self
+            _result!.setup()
+            _cell = _result
+            _result = .none
             return _cell
         }()
     }
